@@ -3,6 +3,7 @@ package burt;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +21,9 @@ public class GUI extends JPanel {
 
 
     private final JButton b3, b4;
-    private final JPanel p1, p2;
 
     public GUI() {
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
         setBackground(Color.lightGray);
 
         b3 = new JButton("shutdown");
@@ -59,16 +59,11 @@ public class GUI extends JPanel {
         });
 
 
-        p1 = new JPanel();
-        p2 = new JPanel();
-        p1.setBackground(Color.LIGHT_GRAY);
-        p2.setBackground(Color.LIGHT_GRAY);
 
-        p1.add(b3);
-        p2.add(b4);
 
-        add(p1, BorderLayout.NORTH);
-        add(p2, BorderLayout.CENTER);
+        add(b3);
+        add(b4);
+
     }
 
 }

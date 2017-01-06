@@ -18,8 +18,8 @@ public class Burt {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setContentPane(new GUI());        
-        frame.setPreferredSize(new Dimension(300, 150));
-        frame.pack();                      // always pack the frame 
+        frame.setPreferredSize(new Dimension(300, 100));
+        frame.pack();                      // pack the frame 
         frame.setLocationRelativeTo(null); // sets app to middle of the screen
         frame.setVisible(true);
     }
