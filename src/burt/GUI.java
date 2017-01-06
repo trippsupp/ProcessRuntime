@@ -38,8 +38,10 @@ public class GUI extends JPanel {
         shutdown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    // creates runtime object
                     Runtime runtime = Runtime.getRuntime();
-                    Process proc = runtime.exec("shutdown -s -t 120");
+                    // projecss object executes shutdown
+                    Process proc = runtime.exec("shutdown -s -t 120"); 
                 } catch (IOException ex) {
                     Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -50,17 +52,17 @@ public class GUI extends JPanel {
         stopShutdown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    // creates runtime object
                     Runtime runtime = Runtime.getRuntime();
-                    Process proc = runtime.exec("shutdown -a");
+                    // projecss object stops shutdown
+                    Process proc = runtime.exec("shutdown -a"); 
                 } catch (IOException ex) {
                     Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
 
-
-
-
+        // add buttons to panel
         add(shutdown);
         add(stopShutdown);
 
