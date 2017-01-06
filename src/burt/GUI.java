@@ -20,22 +20,22 @@ import javax.swing.JPanel;
 public class GUI extends JPanel {
 
 
-    private final JButton b3, b4;
+    private final JButton shutdown, stopShutdown;
 
     public GUI() {
         setLayout(new FlowLayout());
         setBackground(Color.lightGray);
 
-        b3 = new JButton("shutdown");
-        b4 = new JButton("stop shutdown");
+        shutdown = new JButton("shutdown");
+        stopShutdown = new JButton("stop shutdown");
      
-        b3.setPreferredSize(new Dimension(100, 50));
-        b4.setPreferredSize(new Dimension(100, 50));
+        shutdown.setPreferredSize(new Dimension(100, 50));
+        stopShutdown.setPreferredSize(new Dimension(100, 50));
         
-        b3.setMargin(new Insets(0, 0, 0, 0));
-        b4.setMargin(new Insets(0, 0, 0, 0));
+        shutdown.setMargin(new Insets(0, 0, 0, 0));
+        stopShutdown.setMargin(new Insets(0, 0, 0, 0));
 
-        b3.addActionListener(new ActionListener() {
+        shutdown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Runtime runtime = Runtime.getRuntime();
@@ -47,7 +47,7 @@ public class GUI extends JPanel {
             }
         });
 
-        b4.addActionListener(new ActionListener() {
+        stopShutdown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Runtime runtime = Runtime.getRuntime();
@@ -61,8 +61,8 @@ public class GUI extends JPanel {
 
 
 
-        add(b3);
-        add(b4);
+        add(shutdown);
+        add(stopShutdown);
 
     }
 
