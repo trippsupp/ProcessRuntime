@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -19,29 +22,53 @@ import javax.swing.JPanel;
  */
 public class GUI extends JPanel {
 
-
+    private JPanel nPanel, sPanel;
+    
     private final JButton shutdown, stopShutdown;
+    private JCheckBox checkbox1, checkbox2;
 
     public GUI() {
-        setLayout(new FlowLayout());
-        setBackground(Color.lightGray);
+        setLayout(new BorderLayout());
+        //setBackground(Color.lightGray);
 
-        shutdown = new JButton("shutdown");
-        stopShutdown = new JButton("stop shutdown");
+        shutdown = new JButton("Shutdown");
+        stopShutdown = new JButton("Stop shutdown");
      
-        shutdown.setPreferredSize(new Dimension(100, 50));
-        stopShutdown.setPreferredSize(new Dimension(100, 50));
+        shutdown.setPreferredSize(new Dimension(100, 25));
+        stopShutdown.setPreferredSize(new Dimension(100, 25));
         
         shutdown.setMargin(new Insets(0, 0, 0, 0));
         stopShutdown.setMargin(new Insets(0, 0, 0, 0));
+        
+        checkbox1 = new JCheckBox("Custom countdown");
+        checkbox2 = new JCheckBox("Custom message");
 
         shutdown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     // creates runtime object
                     Runtime runtime = Runtime.getRuntime();
+                    String execStatement = "shutdown -s";
+                    
+                    if(checkbox1.isSelected()){
+                        String time = JOptionPane.showInputDialog(null,
+                                "Enter custom time in seconds:");       
+                        execStatement += " -t " + time;
+                    } 
+                    
+                    else {
+                        execStatement += " -t 60"; 
+                    }
+                    
+                    if(checkbox2.isSelected()){
+                        String msg = JOptionPane.showInputDialog(null,
+                                "Enter custom message:");
+                        execStatement += " -c " + msg;
+                    }         
+                    
+                    
                     // projecss object executes shutdown
-                    Process proc = runtime.exec("shutdown -s -t 120"); 
+                    Process proc = runtime.exec(execStatement); 
                 } catch (IOException ex) {
                     Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -62,10 +89,25 @@ public class GUI extends JPanel {
             }
         });
 
-        // add buttons to panel
-        add(shutdown);
-        add(stopShutdown);
-
+        nPanel = new JPanel();
+        sPanel = new JPanel();        
+        
+        // add components to west panel
+        nPanel.add(shutdown);
+        nPanel.add(new JLabel("   "));
+        nPanel.add(stopShutdown);
+        
+        // add components to east panel
+        sPanel.add(checkbox1);
+        sPanel.add(checkbox2);        
+        
+        add(nPanel, BorderLayout.NORTH);
+        add(sPanel, BorderLayout.SOUTH);
+        
+        
+        
+        
+        
     }
 
 }
