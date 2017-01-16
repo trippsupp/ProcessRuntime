@@ -48,27 +48,31 @@ public class GUI extends JPanel {
                 try {
                     // creates runtime object
                     Runtime runtime = Runtime.getRuntime();
+                    // create default execution statement
                     String execStatement = "shutdown -s";
                     
+                    // if custom time is checked
                     if(checkbox1.isSelected()){
                         String time = JOptionPane.showInputDialog(null,
                                 "Enter custom time in seconds:");       
                         execStatement += " -t " + time;
                     } 
                     
+                    // if custom time is NOT checked
                     else {
-                        execStatement += " -t 60"; 
+                        execStatement += " -t 60"; // default time of 60 seconds
                     }
                     
+                    // if custom message is checked
                     if(checkbox2.isSelected()){
                         String msg = JOptionPane.showInputDialog(null,
                                 "Enter custom message:");
                         execStatement += " -c " + msg;
-                    }         
+                    }                             
                     
-                    
-                    // projecss object executes shutdown
+                    // process object executes shutdown statement
                     Process proc = runtime.exec(execStatement); 
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -101,6 +105,7 @@ public class GUI extends JPanel {
         sPanel.add(checkbox1);
         sPanel.add(checkbox2);        
         
+        // add panels to this
         add(nPanel, BorderLayout.NORTH);
         add(sPanel, BorderLayout.SOUTH);
         
